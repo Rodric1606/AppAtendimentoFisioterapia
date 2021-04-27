@@ -57,7 +57,7 @@ session_start();
       <!--<img src="..." class="card-img-top" alt="..."> -->
     <div class="card-body">
         <h5 class="card-title">LOGIN</h5>    
-    <form method="POST" action="http://127.0.0.1/AppAtendimentoFisioterapia/php/autenticacao/valida.php">
+    <form method="POST" action="http://127.0.0.1/AppAtendimentoFisioterapia2/php/autenticacao/valida.php">
           <div class="mb-3">
             <label class="form-label">Usuário</label>
             <input type="text" class="form-control" name="usuario" aria-describedby="emailHelp">
@@ -71,7 +71,7 @@ session_start();
           </div>
 
             <h6>Ainda não tem acesso?
-                <a href="http://127.0.0.1/AppAtendimentoFisioterapia/php/autenticacao/cadastro.php" style="color:  #00FFFF">Cadastre-se</a></h6>
+                <a href="http://127.0.0.1/AppAtendimentoFisioterapia2/php/autenticacao/cadastro.php" style="color:  #00FFFF">Cadastre-se</a></h6>
     </form>
         </div>
 

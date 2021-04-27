@@ -19,20 +19,20 @@ if ($btnLogin) {
 				$_SESSION ['nome_usuario'] = $row_usuario ['nome_usuario'];
 				$_SESSION ['email'] = $row_usuario ['email'];
 
-				header("Location: http://127.0.0.1/AppAtendimentoFisioterapia/index.php");
+				header("Location: http://127.0.0.1/AppAtendimentoFisioterapia2/index.php");
 
 			}else{
 				$_SESSION ['msg'] = "Login ou Senha incorreto!";
-				header("Location: http://127.0.0.1/AppAtendimentoFisioterapia/php/autenticacao/login.php");
+				header("Location: http://127.0.0.1/AppAtendimentoFisioterapia2/php/autenticacao/login.php");
 
 			}
 		}
 
 		}else{
 			$_SESSION ['msg'] = "Login ou Senha incorreto!";
-			header("Location: http://127.0.0.1/AppAtendimentoFisioterapia/php/autenticacao/login.php");
+			header("Location: http://127.0.0.1/AppAtendimentoFisioterapia2/php/autenticacao/login.php");
 		}
 }else{
 	$_SESSION ['msg'] = "Página nome_usuario, email, senha não encontrada!";
-			header("Location: http://127.0.0.1/AppAtendimentoFisioterapia/php/autenticacao/login.php");
+			header("Location: http://127.0.0.1/AppAtendimentoFisioterapia2/php/autenticacao/login.php");
 }

@@ -27,7 +27,7 @@ $bd = mysqli_select_db($conn, 'registroatendimento');
 
         if($query_run){
             echo '<script> alert("Atendimento salvo");</script>';
-            header('location: http://127.0.0.1/AppAtendimentoFisioterapia/index.php');
+            header('location: http://127.0.0.1/AppAtendimentoFisioterapia2/index.php');
         }else{
             echo '<script> alert("Atendimento não salvo");</script>';
         }

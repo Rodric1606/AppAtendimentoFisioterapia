@@ -12,9 +12,9 @@ $result_usuario = "INSERT INTO terapeutas (nome_terapeuta, email, created) VALUE
 $resultado_usuario = mysqli_query ($conn, $result_usuario);
 
 if (mysqli_insert_id ($conn) ) {
-	header("Location: http://127.0.0.1/AppAtendimentoFisioterapia/php/autenticacao/login.php");
+	header("Location: http://127.0.0.1/AppAtendimentoFisioterapia2/php/autenticacao/login.php");
 }else{
-	header("Location: http://127.0.0.1/AppAtendimentoFisioterapia/php/autenticacao/login.php");
+	header("Location: http://127.0.0.1/AppAtendimentoFisioterapia2/php/autenticacao/login.php");
 
 
 }

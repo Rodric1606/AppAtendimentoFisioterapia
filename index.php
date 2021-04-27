@@ -2,15 +2,15 @@
 <?php
 session_start();
     if(!empty($_SESSION ['idusuario'])) {
-        echo "Olá ".$_SESSION ['nome_usuario'].", Bem vindo "." <a href='http://127.0.0.1/AppAtendimentoFisioterapia/php/autenticacao/sair.php'>Sair</a>";
+        echo "Olá ".$_SESSION ['nome_usuario'].", Bem vindo "." <a href='http://127.0.0.1/AppAtendimentoFisioterapia2/php/autenticacao/sair.php'>Sair</a>";
     }else{
         $_SESSION ['msg'] = "Área restrita";
-        header("Location: http://127.0.0.1/AppAtendimentoFisioterapia/php/autenticacao/login.php");
+        header("Location: http://127.0.0.1/AppAtendimentoFisioterapia2/php/autenticacao/login.php");
     }
 ?>
 
 <?php
-    include("../AppAtendimentoFisioterapia/php/autenticacao/conexao.php");
+    include("../AppAtendimentoFisioterapia2/php/autenticacao/conexao.php");
     $consultaReg = "select * from registroatendimento";
     $con = $conn -> query($consultaReg) or die($conn ->error);
 ?>
@@ -21,7 +21,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="../css/estilo.css">
-    <link rel="stylesheet" type="text/css" href="../AppAtendimentoFisioterapia/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../AppAtendimentoFisioterapia2/bootstrap/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atendimento</title>
 </head>
@@ -69,7 +69,7 @@ session_start();
 
                         <thead>
                             <tr>
-                                <th scope="col">Fisioterapeuta</th>
+                                <th scope="col">Terapeuta</th>
                                 <th scope="col">Paciente</th>
                                 <th scope="col">Data</th> 
                                 <th scope="col">Duração sessão</th>
@@ -89,8 +89,8 @@ session_start();
                                         <td><?php echo $registro["dsprocedimento"];?></td>
                                         <td><?php echo $registro["vlreceber"];?></td>
                                         <td>
-                                            <img class="icon" src="../AppAtendimentoFisioterapia/img/pencil.svg" alt="">
-                                            <img class="icon" src="../AppAtendimentoFisioterapia/img/trash.svg" alt="">
+                                            <img class="icon" src="../AppAtendimentoFisioterapia2/img/pencil.svg" alt="">
+                                            <img class="icon" src="../AppAtendimentoFisioterapia2/img/trash.svg" alt="">
                                         </td>
                                     </tr>
                             <?php } ?>
@@ -110,23 +110,35 @@ session_start();
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <form action="http://127.0.0.1/AppAtendimentoFisioterapia/php/sistema/novoRegistro.php" method="POST">
-                        <div class="modal-body">
-                                    
+                    <form action="http://127.0.0.1/AppAtendimentoFisioterapia2/php/sistema/novoRegistro.php" method="POST">
+                        <div class="modal-body">       
                         <div class="col-sm mb-3">           
-                            <label for="exampleDataList" class="form-label">Fisioterapeuta</label>
-                            <input name="fisioterapeuta" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-                            <datalist id="datalistOptions">
-                                <option value="Rodrigo Cardozo">
-                                <option value="Gabriel Borges Cardozo">
-                                <option value="Diego Cruz">
-                            </datalist>
+                            <label  class="form-label">Terapeuta</label>
+                            <?php
+ 
+                                $conTerap = "select * From terapeutas";
+                                $sqlTerap = $conn -> query($conTerap) or die($conn ->error);
+                            ?>
+                                    <select name="fisioterapeuta" class="form-select" aria-label="Default select example">
+                                            <option selected>Selecione uma opção...</option>
+                                        <?php while($terapeuta = $sqlTerap -> fetch_array()){ ?>
+                                            <option value="<?php echo $terapeuta["nome_terapeuta"];?>"><?php echo $terapeuta["nome_terapeuta"];?></option>
+                                        <?php }?>    
+                                    </select>   
                         </div>     
-
-
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Nome do Paciente</label>
-                            <input name="paciente" type="input" class="form-control" id="exampleInputPassword1">
+                            <?php
+                                $conPacie = "select * from paciente";
+                                $sqlPacie = $conn -> query($conPacie) or die($conn ->error);
+                            ?>
+                            <label  class="form-label">Nome do Paciente</label>
+                            <select name="paciente" class="form-select" aria-label="Default select example">
+                                    <option selected>Selecione uma opção...</option>
+                                <?php while($paciente = $sqlPacie -> fetch_array()){ ?>
+                                    <option value="<?php echo $paciente["nome_paciente"];?>"><?php echo $paciente["nome_paciente"];?></option>    
+                                <?php } ?>    
+                            
+                            </select>
                         </div>
 
                         <div class="col-sm mb-3">
@@ -138,14 +150,19 @@ session_start();
                             <label for="exampleInputPassword1" class="form-label">Duração da sessão</label>
                             <input name="duracao" type="time" class="form-control" placeholder="time" aria-label="time">
                         </div>
-                        <div class="col-sm mb-3">           
-                            <label for="exampleDataList" class="form-label">Procedimento</label>
-                            <input name="procedimento" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-                            <datalist id="datalistOptions">
-                                <option value="Procedimento 1">
-                                <option value="Procedimento 2">
-                                <option value="Procedimento 3">
-                            </datalist>
+
+                        <div class="col-sm mb-3">
+                            <?php
+                                $conProc = "Select * From procedimento";
+                                $sqlProc = $conn -> query($conProc) or die ($conn -> error);
+                            ?>
+                            <label class="form-label">Procedimento</label>
+                            <select name="procedimento"  class="form-select" aria-label="Default select example">
+                                    <option selected>Selecione uma opção...</option>
+                                <?php while($procedimento = $sqlProc -> fetch_array()){ ?>
+                                    <option value="<?php echo $procedimento["nome_procedimento"];?>"><?php echo $procedimento['nome_procedimento']?></option>
+                                    <?php }?>
+                            </select>
                         </div>  
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -160,7 +177,7 @@ session_start();
 
      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
      <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>                                 
-     <script src="../AppAtendimentoFisioterapia/bootstrap/bootstrap.min.js"></script>
+     <script src="../AppAtendimentoFisioterapia2/bootstrap/bootstrap.min.js"></script>
 
                              
 

@@ -17,7 +17,7 @@ if ($btnCadUsuario) {
     $resultado_usuario = mysqli_query($conn, $result_usuario);
     if (mysqli_insert_id($conn)) {
         $_SESSION ['msgcad'] = "Usuário cadastrado com sucesso";
-        header ("Location: http://127.0.0.1/AppAtendimentoFisioterapia/php/autenticacao/login.php");
+        header ("Location: http://127.0.0.1/AppAtendimentoFisioterapia2/php/autenticacao/login.php");
 
     }else{
         $_SESSION ['msg'] = "Erro ao cadastrar o usuário";
@@ -90,7 +90,7 @@ if ($btnCadUsuario) {
         <button type="submit" class="btn btn-success mb-3" name="btnCadUsuario" value="Cadastrar">Cadastrar</button>
         </div>
 
-        <h6>Lembrou? <a href="http://127.0.0.1/AppAtendimentoFisioterapia/php/autenticacao/login.php" style="color: #00FFFF;">Clique aqui</a> para logar</h6>
+        <h6>Lembrou? <a href="http://127.0.0.1/AppAtendimentoFisioterapia2/php/autenticacao/login.php" style="color: #00FFFF;">Clique aqui</a> para logar</h6>
     </form>
         </div>
 </main>
