@@ -49,7 +49,7 @@ session_start();
                                 Cadastro
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Fisioterapeuta</a></li>
+                                <li><a class="dropdown-item" href="#">FisioTerapeuta</a></li>
                                 <li><a class="dropdown-item" href="#">Procedimento</a></li>
                                 <li><a class="dropdown-item" href="#">Paciente</a></li>
                             </ul>
@@ -69,10 +69,10 @@ session_start();
 
                         <thead>
                             <tr>
-                                <th scope="col">Terapeuta</th>
+                                <th scope="col">Fisioterapeuta</th>
                                 <th scope="col">Paciente</th>
                                 <th scope="col">Data</th> 
-                                <th scope="col">Duração sessão</th>
+                                <th scope="col">Duração (minutos)</th>
                                 <th scope="col">Procedimento</th>
                                 <th scope="col">valor a receber</th>
                                 <th scope="col"></th>
@@ -85,9 +85,9 @@ session_start();
                                         <td><?php echo $registro["nmfisioterapeura"];?></td>
                                         <td><?php echo $registro["nmpaciente"];?></td>
                                         <td><?php echo date("d/m/Y", strtotime($registro["dtatendimento"]));?></td>
-                                        <td><?php echo $registro["dtduracao"];?></td>
+                                        <td style="text-align:center;"><?php echo $registro["dtduracao"];?></td>
                                         <td><?php echo $registro["dsprocedimento"];?></td>
-                                        <td><?php echo $registro["vlreceber"];?></td>
+                                        <td style="text-align:center;"><?php echo $registro["vlreceber"];?></td>
                                         <td>
                                             <img class="icon" src="../AppAtendimentoFisioterapia2/img/pencil.svg" alt="">
                                             <img class="icon" src="../AppAtendimentoFisioterapia2/img/trash.svg" alt="">
@@ -147,8 +147,8 @@ session_start();
                         </div>
 
                         <div class="col-sm mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Duração da sessão</label>
-                            <input name="duracao" type="time" class="form-control" placeholder="time" aria-label="time">
+                            <label  class="form-label">Duração (minutos)</label>
+                            <input name="duracao" type="number" class="form-control" aria-label="time">
                         </div>
 
                         <div class="col-sm mb-3">
@@ -168,6 +168,9 @@ session_start();
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" name="inserirReg"class="btn btn-primary">Salvar atendimento</button>
                         </div>
+
+
+
                     </form>
                     </div>
                 </div>
